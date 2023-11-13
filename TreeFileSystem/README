@@ -1,0 +1,33 @@
+Nume student: Bratan Alex- Florin
+Grupa: 314CB
+
+TEMA 3 SDA - SISTEM DE FISIERE:
+
+TOUCH:
+Se prelucreaza arborele de fisiere astfel: parcurg recursiv arborele, mergand la stanga daca numele este mai mic lexicografic decat numele nodului curent
+sau la dreapta daca este mai mare. Cand ajung in pozitia in care trebuie sa adaug nodul, apelez functia addF care initializeaza un nou nod cu numele cerut.
+
+MKDIR:
+Functioneaza pe acelasi principiu ca si touch, doar ca prelucreaza arborele de subdirectoare.
+
+RM:
+Se prelucreaza arborele de fisiere astfel: parcurg recursiv arborele, mergand la stanga daca numele este mai mic lexicografic decat numele nodului curent
+sau la dreapta daca este mai mare. Daca gasesc nodul cu numele cerut, tratez unul din cele 3 cazuri:
+ -CAZUL 1: daca nodul nu are NICIUN fiu, i se da valoarea NULL si se sterge;
+ -CAZUL 2: daca nodul are UN SINGUR fiu, este inlocui cu acesta;
+ -CAZUL 3: daca nodul are DOI fii, se cauta cel mai mic nod lexicografic din dreapta nodului care trebuie sters. acest nod va inlocui nodul ce trebuie
+           "sters" si va fi la randul sau sters din arbore.
+
+RMDIR:
+Functioneaza pe acelasi principiu ca si RM, doar ca prelucreaza arborele de subdirectoare.
+
+CD: 
+Se cauta adresa numelui directorului in care vrem sa ne mutam (in stanga daca numele este mai mic lexicografic, in dreapta daca este mai mare)
+
+PWD: 
+Se afiseaza numele directorului curent, apoi se apeleaza recursiv functia, avand ca parametru parintele directorului.
+
+FIND:
+Pentru find, am facut un vector de directoare.
+pentru -d: Parcurg vectorul de directoare. Daca gasesc directorul cu numele cerut, afisez mesajul si apelez pwd.
+pentru -f: Parcurg vectorul de directoare. Parcurg arborele de fisiere al fiecarui director si daca gasesc fisierul, afisez mesajul si apelez pwd. 
