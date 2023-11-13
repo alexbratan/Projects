@@ -1,0 +1,29 @@
+Am implementat tema folosind cate un fisier pentru fiecare componenta: user, question, quiz.
+
+Pentru User:
+-erorile de tip "please provide username/password" le-am tratat direct folosind vectorul args dat ca parametru
+(daca nu exista args[1]/args[2]);
+-am creat functia searchUser pentru a verifica daca user-ul exista deja in baza de date;
+-am creat functia checkCredentials pentru a verifica daca exista o combinatie de user si parola care sa existe
+in baza de date;
+-am creat functia createUser pentru a adauga user-ul in baza de date, daca nu apare nicio eroare;
+-functia doUserStuff apeleaza toate celelalte functii si rezolva cerintele pt. creare user.
+
+Pentru Question:
+-am salvat id, raspunsuri, corectitudinea raspunsurilor, tipul etc. in variabile;
+-functia createQuestionStuff rezolva toate cerintele legate de crearea unei intrebari;
+-functia getQuestionStuff rezolva toate cerintele legate de gasirea unei intrebari;
+-functia getAllQuestions rezolva toate cerintele legate de vizualizarea tuturor intrebarilor;
+
+Pentru Quiz:
+-am salvat id, numele quiz-ului si id-urile intrebarilor;
+-functia createQuizStuff rezolva toate cerintele legate de crearea unui quiz;
+-functia getQuizStuff rezolva toate cerintele legate de afisarea unui quiz;
+-functia deleteQuiz rezolva toate cerintele legate de stergerea unui quiz;
+-functia getQuizDetails rezolva cateva dintre cerintele legate de detaliile unui quiz;
+-fucntia getAllQuizzes rezolva toate cerintele legate de vizualizarea tuturor quiz-urilor;
+-functia submitQuiz rezolva cateva din cerintele legate de rezolvarea unui quiz;
+-functia getSolutions rezolva cateava din cerintele legate de vizualizarea solutiilor unui quiz;
+
+In clasa Cleanup am apelat functii de stergere pentru fiecare fisier, dar si de resetare a id-urilor pentru
+intrebari, respectiv quiz-uri
