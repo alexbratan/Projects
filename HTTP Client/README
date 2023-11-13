@@ -1,0 +1,46 @@
+STUDENT: Bratan Alex-Florin
+GRUPA: 324CB
+
+Mai jos se afla explicatiile pe scurt ale implementarii clientului HTTP. Alte detalii se mai gasesc si in comentariile din client.c:
+
+Functiile de request:
+-sunt facute dupa modelul din laboratorul 9, doar ca am mai adaugat headere in plus unde a fost nevoie (de exemplu token JWT pentru autorizatie);
+-tot in requests.c am adaugat si 2 functii de prelucrare a sirurilor in format JSON pentru a putea trimite datele catre server;
+-am folosit biblioteca parson.
+
+Clientul propriu-zis:
+-au fost implementate toate comenzile (register, login, enter_library, add_book, get_bookId, get_books, delete, logout, exit);
+
+-am luat o variabila is_logged_in in care tin minte daca utilizatorul este deja logat (1) sau nu (0), pentru a trata cazul de eroare;
+
+-comanda REGISTER: se verifica daca utilizatorul este logat deja pe un cont, in caz contrar se citesc de la tastatura datele (username si parola) si se
+ trimite un GET request catre server. Daca utilizatorul deja exista, se afiseaza un mesaj de eroare;
+
+-comanda LOGIN: se verifica daca utilizatorul este logat deja pe un cont, in caz contrar se citesc de la tastatura datele (username si parola) si se
+ trimite un POST request catre server. Daca userul sau parola sunt gresite, se afiseaza un mesaj de eroare. Daca sunt corecte, salvez cookie-ul de login
+ intr-un char*, iar variabila is_logged_in devine 1;
+
+-comanda ENTER_LIBRARY: se verifica daca utilizatorul nu este logat pe un cont, in caz contrar se trimite un GET request catre server si token-ul JWT din
+ raspunsul de la server este salvat intr-un char* pentru a fi folosit la alte comenzi;
+
+-comanda ADD_BOOK: se verifica daca utilizatorul nu este logat pe un cont, in caz contrar se verifica daca are permisiune de a accesa biblioteca (daca token-ul JWT
+ nu este NULL). Daca are permisiune, se citesc de la tastatura datele despre carte (titlu, autor etc.) si sunt trimise in format JSON catre server printr-un POST
+ request. Daca datele despre carte sunt invalide, se trimite un mesaj de eroare.
+
+-comanda GET_BOOKID: se verifica daca utilizatorul nu este logat pe un cont si apoi daca are permisiune (daca token-ul JWT
+ nu este NULL). Daca are permisiune, se citeste ID-ul cartii si se trimite un GET request catre server. Daca 
+ nu exista o carte cu ID-ul respectiv, se afiseaza un mesaj de eroare; daca exista, se afiseaza datele despre cartea respectiva in format JSON;
+
+-comanda GET_BOOKS: se verifica daca utilizatorul nu este logat pe un cont si apoi daca are permisiune (daca token-ul JWT
+ nu este NULL). Daca are permisiune, se trimite un GET request catre server si se afiseaza cartile in format JSON.
+
+-comanda DELETE: se verifica daca utilizatorul nu este logat pe un cont si apoi daca are permisiune (daca token-ul JWT
+ nu este NULL). Daca are permisiune, se citeste ID-ul cartii si se trimite un DELETE request catre server. Daca nu exista o carte cu ID-ul respectiv, se afiseaza un mesaj de eroare
+ iar daca exista se afiseaza un mesaj care confirma stergerea cartii;
+
+-comanda LOGOUT: se verifica daca utilizatorul nu este logat pe un cont, iar in caz contrar se trimite un POST request care contine cookie-ul de login si se actualizeaza variabila
+ is_logged_in, care devine 0, iar apoi se afiseaza un mesaj de confirmare;
+
+-comanda EXIT: inchide bucla while si termina conexiunea la server;
+
+
