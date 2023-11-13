@@ -1,0 +1,7 @@
+Am implementat prima cerinta.
+
+Se initializeaza tabela ARP si tabela de rutare. Prin functia recv_from_any_link se primeste pachetul.
+Se verifica checksum, daca este gresit este aruncat pachetul.
+Se verifica apoi TTL, sunt aruncate pachetele cu ttl <=1. Daca ttl-ul este ok, se decrementeaza.
+Se cauta cea mai buna ruta prin functia get_best_route(daca nu se gaseste nimic, pachetul este aruncat) si apoi se modifica header-ul cu noile informatii de rutare(ttl nou, checksum nou etc).
+Se determina urmatorul hop si se trimite noul pachet.
